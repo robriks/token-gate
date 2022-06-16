@@ -12,11 +12,14 @@ contract HotsThots is ERC721("HotsThots", "HOTS"), Owned(msg.sender) {
 
     Counters.Counter private _idCount;
 
+    string public baseURI;
+
     address[] public hotsFrens;
 
     constructor(address[] memory _whitelist) {
         console.log("Deploying HotsThots membership NFT to whitelisted addresses");
         hotsFrens = _whitelist;
+        baseURI = "ar://eHzq468IAFGcsllomr9OLz4Zizy6Qf9VeUOAk3Ge6qw";
         _mint(msg.sender, _idCount.current());
         _idCount.increment();
     }
@@ -26,8 +29,11 @@ contract HotsThots is ERC721("HotsThots", "HOTS"), Owned(msg.sender) {
     }
 
     function tokenURI(uint256 id) public view override returns (string memory) {
-        return "hello";
-        //TODO W/ ARWEAVE
+        return baseURI;
+    }
+
+    function changeTokenURI(string calldata newURI) public onlyOwner() {
+        baseURI = newURI;
     }
 
     function claim() external {
