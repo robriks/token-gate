@@ -19,7 +19,7 @@ contract HotsThots is ERC721("HotsThots", "HOTS"), Owned(msg.sender) {
     constructor(address[] memory _whitelist) {
         console.log("Deploying HotsThots membership NFT to whitelisted addresses");
         hotsFrens = _whitelist;
-        baseURI = "ar://eHzq468IAFGcsllomr9OLz4Zizy6Qf9VeUOAk3Ge6qw";
+        baseURI = "ar://eHzq468IAFGcsllomr9OLz4Zizy6Qf9VeUOAk3Ge6qw/";
         _mint(msg.sender, _idCount.current());
         _idCount.increment();
     }
